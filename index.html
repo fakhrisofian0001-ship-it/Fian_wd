@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fian • Mobile Portfolio</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg1:#0b1026;--bg2:#111a4a;--gold:#ffd27f;--blue:#6f8cff;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      background: radial-gradient(1200px 600px at 20% -10%, #1a2b7a, transparent),
+                  radial-gradient(900px 500px at 100% 10%, #0f1c5c, transparent),
+                  linear-gradient(180deg,var(--bg1),#050816);
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    .stars::before{
+      content:"";position:fixed;inset:0;pointer-events:none;
+      background:url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity:.25;
+    }
+
+    /* HEADER + LOGO */
+    .header{
+      padding:18px 16px 8px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+
+    .logo{
+      display:flex;align-items:center;gap:10px;
+    }
+
+    .logo img{
+      height:40px;
+      width:auto;
+      max-width:180px;
+      object-fit:contain;
+      border:none;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .brand{
+      font-family:'Cinzel',serif;letter-spacing:2px;font-size:16px;
+      color:var(--gold);
+    }
+
+    .badge{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(255,255,255,.05);
+    }
+
+    .container{padding:10px 14px 24px}
+
+    .card{
+      border-radius:22px;overflow:hidden;position:relative;
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 30px 80px rgba(0,0,0,.6);
+    }
+
+    .hero{padding:16px;display:flex;justify-content:center}
+
+    .photo{
+      width:72%;max-width:320px;aspect-ratio:3/4;border-radius:18px;
+      overflow:hidden;border:2px solid var(--gold);
+      box-shadow:0 20px 40px rgba(0,0,0,.4), 0 0 20px rgba(255,210,127,.5);
+    }
+
+    .photo img{width:100%;height:100%;object-fit:cover}
+
+    .name{text-align:center;margin-top:6px;font-family:'Cinzel',serif;font-size:26px}
+    .star{display:block;font-size:12px;color:var(--gold)}
+
+    .bio{text-align:center;font-size:13px;margin:10px}
+
+    .grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;
+      padding:10px;font-size:13px;
+    }
+
+    .item{background:rgba(255,255,255,.06);padding:10px;border-radius:12px}
+    .item span{color:var(--gold)}
+
+    .ig{margin:10px;padding:10px;border:1px dashed var(--gold);text-align:center}
+
+    /* BUTTON */
+    .btn{
+      margin:10px;
+      padding:12px;
+      text-align:center;
+      border-radius:12px;
+      background:linear-gradient(45deg,var(--gold),var(--blue));
+      color:black;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    /* ALBUM PAGE */
+    .album{
+      display:none;
+      padding:20px;
+      text-align:center;
+    }
+
+    .album.active{display:block}
+
+    /* FOTO 1:1 */
+    .album-photo{
+      width:220px;
+      aspect-ratio:1/1;
+      margin:20px auto;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 0 25px rgba(255,255,255,0.3);
+    }
+
+    .album-photo img{
+      width:100%;height:100%;object-fit:cover;
+    }
+
+    /* VINYL GLASS FUTURISTIC */
+    .vinyl{
+      width:220px;height:220px;
+      border-radius:50%;
+      margin:30px auto;
+      position:relative;
+      background:radial-gradient(circle, rgba(255,255,255,0.2) 10%, rgba(0,0,0,0.8) 60%);
+      backdrop-filter:blur(10px);
+      border:2px solid rgba(255,255,255,0.3);
+      box-shadow:0 0 30px rgba(111,140,255,0.6);
+      animation:spin 5s linear infinite;
+    }
+
+    .vinyl::after{
+      content:"";
+      position:absolute;
+      width:60px;height:60px;
+      background:linear-gradient(45deg,#ffd27f,#6f8cff);
+      border-radius:50%;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      box-shadow:0 0 15px #ffd27f;
+    }
+
+    /* SOUND WAVE */
+    .wave{
+      display:flex;
+      justify-content:center;
+      gap:4px;
+      margin-top:20px;
+    }
+
+    .bar{
+      width:4px;
+      height:20px;
+      background:#ffd27f;
+      animation:wave 1s infinite ease-in-out;
+    }
+
+    .bar:nth-child(2){animation-delay:.2s}
+    .bar:nth-child(3){animation-delay:.4s}
+    .bar:nth-child(4){animation-delay:.6s}
+    .bar:nth-child(5){animation-delay:.8s}
+
+    @keyframes wave{
+      0%,100%{height:10px}
+      50%{height:30px}
+    }
+
+    .back{
+      margin-top:25px;
+      padding:10px;
+      border:1px solid var(--gold);
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+  </style></head>
+<body><div class="stars"></div><header class="header">
+  <div class="logo">
+    <img src="Logo.png">
+    <div class="brand">FIAN</div>
+  </div>
+  <div class="badge">Indie</div>
+</header><div id="main">
+  <div class="container">
+    <div class="card"><div class="hero">
+    <div class="photo">
+      <img src="Fian.jpg">
+    </div>
+  </div>
+
+  <div class="name">Fian<span class="star">✦ F I A N ✦</span></div>
+  <div class="bio">"Shining like stars in a silent sky ✨"</div>
+
+  <div class="grid">
+    <div class="item"><span>B-day:</span> 16 February</div>
+    <div class="item"><span>Tinggi:</span> 168 cm</div>
+    <div class="item"><span>Zodiak:</span> Aquarius</div>
+    <div class="item"><span>Group:</span> Indie</div>
+  </div>
+
+  <div class="ig">IG: @Fian_aja15</div>
+
+  <div class="btn" onclick="openAlbum()">🎵 Buka Album</div>
+
+</div>
+
+  </div>
+</div><!-- ALBUM --><div class="album" id="album">  <h2>My Album</h2>  <div class="vinyl"></div>  <div class="album-photo">
+    <img src="Album.jpg">
+  </div>  <div class="wave">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>  <div class="back" onclick="closeAlbum()">⬅ Kembali</div></div><script>
+function openAlbum(){
+  document.getElementById('main').style.display='none';
+  document.getElementById('album').classList.add('active');
+}
+
+function closeAlbum(){
+  document.getElementById('main').style.display='block';
+  document.getElementById('album').classList.remove('active');
+}
+</script>
+<script>
+function openAlbum(){
+  document.getElementById('main').style.display='none';
+  document.getElementById('album').classList.add('active');
+  document.getElementById('music').play();
+}
+
+function closeAlbum(){
+  document.getElementById('main').style.display='block';
+  document.getElementById('album').classList.remove('active');
+  document.getElementById('music').pause();
+}
+</script>
+
+<!-- TARUH DI SINI -->
+<audio id="music" loop>
+  <source src="Liar.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
